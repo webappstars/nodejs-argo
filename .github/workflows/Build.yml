@@ -23,11 +23,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check the latest verion
-        run: |
-          [ -e app/README.md ] && NOW=$(cat app/README.md)
-          LATEST=$(sudo wget -qO- https://raw.githubusercontent.com/naiba/nezha/master/README.md | grep -oP '(?<=master&label=Dash%20)[^&]*')
-          [ "$NOW" != "$LATEST" ] && echo "VERSION=$LATEST" >> $GITHUB_ENV || true
+      #- name: Check the latest verion
+        #run: |
+          #[ -e app/README.md ] && NOW=$(cat app/README.md)
+          #LATEST=$(sudo wget -qO- https://raw.githubusercontent.com/naiba/nezha/master/README.md | grep -oP '(?<=master&label=Dash%20)[^&]*')
+          #[ "$NOW" != "$LATEST" ] && echo "VERSION=$LATEST" >> $GITHUB_ENV || true
 
       - name: Set up QEMU
         if: ${{ env.VERSION != '' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
