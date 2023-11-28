@@ -7,7 +7,7 @@ COPY . .
 EXPOSE 3000
 
 RUN apk update &&\
-    apk add curl &&\
+    apk add curl bash &&\
     chmod +x index.js &&\
     npm install 
     
