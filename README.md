@@ -1,18 +1,17 @@
 # 说明 （部署前请仔细阅读完）
 * 本项目是针对node环境的paas平台和游戏玩具而生，采用Argo隧道部署节点，集成哪吒探针服务。
 * node玩具平台只需上传index.js和package.json即可，paas平台需要docker部署的才上传Dockerfile。
-* 如需是链接github部署，请先删除README.md说明文件，安全起见，已混淆主代码部分，无任何日志输出。
+* 如需是链接github部署，请先删除README.md说明文件，安全起见，已混淆主代码部分。
 * 不填写ARGO_DOMAIN和ARGO_AUTH两个变量即启用临时隧道，反之则使用固定隧道。
 * 若遇到已获取到临时隧道但节点不通，说明域名被墙，重启即可
 * 无需设置NEZHA_TLS,当哪吒端口为443时，自动开启--tls。
+* 右边的Releases中已适配FreeBSD，自行下载，类似的平台Serv00，CT8
 
 * PaaS 平台设置的环境变量，index.js中的1至12行中设置
   | 变量名        | 是否必须 | 默认值 | 备注 |
   | ------------ | ------ | ------ | ------ |
   | URL          | 否 | https://www.google.com     | 项目域名    |
   | PORT         | 否 |  3000  |监听端口                         |
-  | WEB_USERNAME | 否 |  admin |访问list和sub的用户名             |
-  | WEB_PASSWORD | 否 |password| 访问list和sub的密码              |
   | UUID         | 否 | de04add9-5c68-8bab-870c-08cd5320df00|UUID|
   | TIME         | 否 |2 * 60 * 1000|自动访问间隔时间（默认2分钟）
   | NEZHA_SERVER | 否 |        | 哪吒服务端域名，例如nz.aaa.com    |
@@ -25,7 +24,7 @@
   | FILE_PATH    | 否 |  temp  | 运行目录                         | 
 
 # 节点信息
-* 本项目采用Argo隧道，输出list和sub文件和订阅，默认在temp文件夹内，域名/list或域名/sub查看节点信息，list文件在5分钟后会自动删除。
+* 本项目采用Argo隧道，输出sub文件和订阅，默认在temp文件夹内，域名/sub或域名:端口/sub查看节点信息,也是订阅连接
 
 # 其他
 * 本项目已添加自动访问保活功能，仅支持不重启停机的平台，需在第2行中添加项目分配的域名。建议配合外部自动访问保活，保活项目地址：https://github.com/eoovve/Auto-keep-online
